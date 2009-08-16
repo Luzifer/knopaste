@@ -1,0 +1,80 @@
+body {
+	background:		#fff;
+	color:			#000;
+	font-family:	sans-serif;
+	font-size:		10pt;
+}
+
+pre {
+	font-size:		10pt;
+}
+
+ol {
+	font-family: monospace;
+	font-size: 11pt;
+	white-space: pre;
+}
+
+table, td {
+	font-size:		10pt;
+}
+
+#toplayer {
+	width:			100%;
+	border:			1px dotted #000;
+	margin:			0px auto;
+	background:		#85b6ff;
+	margin-top:		-5px;
+}
+
+#mainlayer {
+	width:			100%;
+	margin:			0px auto;
+}
+
+#bottomlayer {
+	width:			100%;
+	border:			1px dotted #000;
+	margin:			0px auto;
+	background:		#85b6ff;
+	font-size:		7pt;
+}
+
+.title {
+	text-align:		center;
+	font-size:		14pt;
+	font-weight:	700;
+}
+
+.bl_left {
+	text-align:		left;
+	color:			#666;
+	font-size:		7pt;
+}
+
+.bl_right {
+	text-align:		right;
+	color:			#666;
+	font-size:		9pt;
+}
+.tl_links {
+	text-align:		right;
+	font-size:		9pt;
+	padding-left:		3px;
+	padding-right:		3px;
+}
+.tl_links a:link, .tl_links a:active, .tl_links a:visited {
+	color:			#000;
+	text-decoration:underline;
+}
+.bl_left a:link, .bl_left a:active, .bl_left a:visited, .bl_right a:link, .bl_right a:active, .bl_right a:visited {
+	color:			#666;
+	text-decoration:overline underline;
+}
+a:link, a:active, a:visited {
+	color:			#000;
+	text-decoration:none;
+}
+.rightline {
+	border-right:	1px solid #000;
+}
