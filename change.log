@@ -1,0 +1,21 @@
+Version 3.4.1
+- Updated to GeSHi version 1.0.8
+
+Version 3.4.0
+- Updated to new Hilighting-Engine
+- Added fileupload as new feature for creating pastes
+
+Version 3.3.0
+- Added bugfix for using KNopaste with Safari
+
+Version 3.2.0
+- Updated Hilighting-Engine
+
+Version 3.1.0
+- Added possibility to use different databases
+- Added interface to file-storage-database
+
+Version 3.0.0
+- Removed MySQL-depencie
+- Better handling of pastes
+- More syntax types to hilight
