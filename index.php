@@ -80,7 +80,7 @@ if ($_SERVER['QUERY_STRING'] != "") {
 }
 
 # Set version of the script and create the sitetitle
-$version = "K-Nopaste 3.4.1";
+$version = "K-Nopaste 3.4.2";
 $url = $_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
 $title = $config->sitetitle . " ($version)";
 $copy = "<a href=\"http://github.com/Luzifer/knopaste/\">$version</a> &copy; 2005 - 2009 by K. Ahlers - <a href=\"http://blog.knut.me\">Knuts Blog</a>";
