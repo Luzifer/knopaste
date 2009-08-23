@@ -4,16 +4,16 @@
 # K-Nopaste - Free Nopaste-System
 # Copyright (C) 2005-2009  Knut Ahlers
 #
-# This program is free software; you can redistribute it and/or modify it under the terms of the GNU General 
-# Public License as published by the Free Software Foundation; either version 2 of the License, or (at your 
+# This program is free software: you can redistribute it and/or modify it under the terms of the GNU General 
+# Public License as published by the Free Software Foundation, either version 3 of the License, or (at your 
 # option) any later version.
 # 
 # This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the 
-# implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for 
+# implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for 
 # more details.
 # 
-# You should have received a copy of the GNU General Public License along with this program; if not, write to the 
-# Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307, USA.
+# You should have received a copy of the GNU General Public License along with this program.
+# If not, see <http://www.gnu.org/licenses/>.
 #
 
 /*
@@ -97,7 +97,7 @@ $version = "KNopaste 3.5.0";
 $version .= " BETA";
 $url = $_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
 $title = $config->sitetitle . " ($version)";
-$copy = "<a href=\"http://github.com/Luzifer/knopaste/\">$version</a> &copy; 2005 - 2009 by K. Ahlers - <a href=\"http://blog.knut.me\">Knuts Blog</a> - Released under GPLv2";
+$copy = "<a href=\"http://github.com/Luzifer/knopaste/\">$version</a> &copy; 2005 - 2009 by K. Ahlers - <a href=\"http://blog.knut.me\">Knuts Blog</a> - Released under GPLv3";
 
 # Insert content to template and display the site
 $template = file_get_contents("templates/" . $config->template . ".html");
