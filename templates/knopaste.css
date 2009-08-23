@@ -78,3 +78,8 @@ a:link, a:active, a:visited {
 .rightline {
 	border-right:	1px solid #000;
 }
+
+input[type='text'], textarea {
+	border: 1px solid black;
+	width:100%;
+}
