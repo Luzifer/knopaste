@@ -66,7 +66,7 @@ class pastehandler {
 		foreach($index as $entry) {
 			$html .= "<li><a href=\"?" . $entry['pasteid'] . "\">" . $entry['pastename'] . "</a>";
 			if(strlen($entry['pastedescription']) > 0) {
-				$html .= "<br />" . $entry['pastedescription'];
+				$html .= "<br />" . htmlentities($entry['pastedescription']);
 			}
 			$html .= "</li>";
 		}
