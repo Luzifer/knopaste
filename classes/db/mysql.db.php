@@ -100,11 +100,25 @@ class paste_database {
 		    . " idn VARCHAR(6),"
 			. " timestamp BIGINT,"
 			. " hlp LONGTEXT,"
-			. " tp LONGTEXT"
+			. " tp LONGTEXT,"
+			. " name VARCHAR(255),"
+			. " description TEXT"
 			. ");";
 		if( mysql_num_rows( mysql_query("SHOW TABLES LIKE '".$this->table."'")) == 0) {
 			if(!mysql_query($sql))
 				die("Not able to construct table: ".mysql_error($this->table));
+		}
+		
+		if(mysql_num_rows(mysql_query("SHOW FIELDS FROM " . $this->table . " WHERE Field LIKE 'name'")) == 0) {
+			$sql = "ALTER TABLE " . $this->table . " ADD COLUMN name VARCHAR(255)";
+			if(!mysql_query($sql))
+				die("Not able to alter the table to the current structure.");
+		}
+
+		if(mysql_num_rows(mysql_query("SHOW FIELDS FROM " . $this->table . " WHERE Field LIKE 'description'")) == 0) {
+			$sql = "ALTER TABLE " . $this->table . " ADD COLUMN description TEXT";
+			if(!mysql_query($sql))
+				die("Not able to alter the table to the current structure.");
 		}
 	}
 
