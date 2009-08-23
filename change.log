@@ -1,6 +1,7 @@
 Version 3.5.0
 - Added option to show index of the past pastes
 - Changed license to GPLv3
+- Added meta data for pastes to be shown in paste list
 
 Version 3.4.2
 - Added option to switch off automatic deletion of pastes
