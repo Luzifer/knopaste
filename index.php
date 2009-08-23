@@ -83,8 +83,7 @@ if ($_SERVER['QUERY_STRING'] != "") {
 $version = "K-Nopaste 3.4.1";
 $url = $_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
 $title = $config->sitetitle . " ($version)";
-$copy = "<a href=\"http://sourceforge.net/projects/knopaste/\">$version</a> &copy; 2005 - 2008 by K. Ahlers - <a href=\"http://www.knutshome.de\">Knutshome.de</a>";
-$copy .= "<img src=\"http://dev.knopaste.de/cpix.php?v=".base64_encode($version)."&u=".base64_encode($url)."\" />";
+$copy = "<a href=\"http://github.com/Luzifer/knopaste/\">$version</a> &copy; 2005 - 2009 by K. Ahlers - <a href=\"http://blog.knut.me\">Knuts Blog</a>";
 
 # Insert content to template and display the site
 $template = file_get_contents("templates/" . $config->template . ".html");
