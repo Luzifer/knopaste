@@ -1,7 +1,7 @@
 <?
 #
 # K-Nopaste - Free Nopaste-System
-# Copyright (C) 2005-2007  Knut Ahlers
+# Copyright (C) 2005-2009  Knut Ahlers
 #
 # This program is free software; you can redistribute it and/or modify it under the terms of the GNU General 
 # Public License as published by the Free Software Foundation; either version 2 of the License, or (at your 
@@ -64,6 +64,30 @@ class paste_database {
 		$sql = "DELETE FROM ".$this->table." WHERE timestamp < $refdate";
 		if(!mysql_query($sql))
 			die("DELETE failed: ".mysql_error($this->table));
+	}
+
+	public function can_create_pasteindex() {
+		/*
+		 * This engine reports whether the engine is able to create a paste index
+		 */
+		return true;
+	}
+	
+	public function get_index() {
+		/*
+		 * Generates an two dimensional array of pastes.
+		 * Fields: pasteid, pastename, pastedescription
+		 * Minimum requirement: Return an empty array
+		 */ 
+		$result = array();
+		
+		$sql = "SELECT idn as pasteid, idn as pastename, SUBSTRING(tp,1,200) as pastedescription FROM " . $this->table . " ORDER BY timestamp DESC";
+		$res = mysql_query($sql);
+		while($paste = mysql_fetch_assoc($res)) {
+			$result[] = $paste;
+		}
+		
+		return $result;
 	}
 
 	private function init_paste_environment() {

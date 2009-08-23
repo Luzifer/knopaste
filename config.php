@@ -3,7 +3,7 @@
 
 #
 # K-Nopaste - Free Nopaste-System
-# Copyright (C) 2005-2007  Knut Ahlers
+# Copyright (C) 2005-2009  Knut Ahlers
 #
 # This program is free software; you can redistribute it and/or modify it under the terms of the GNU General 
 # Public License as published by the Free Software Foundation; either version 2 of the License, or (at your 
@@ -26,6 +26,7 @@ $config->template = "knopaste"; # Name of the template-file without .html-sufix
 $config->usetextfile = true; # Create downloadable textfiles? (true / false)
 $config->pastetime = 24; # How long should i keep pastes? (Default 24h) / 0 for no deletion
 $config->sitetitle = "Knutshome nopaste"; # Title of your nopaste
+$config->pasteindex = true; # Enable indexing of pastes? (true / false)
 
 /*
  * Examples for using the database-engine:

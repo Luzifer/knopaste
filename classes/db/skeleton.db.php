@@ -1,7 +1,7 @@
 <?
 #
 # K-Nopaste - Free Nopaste-System
-# Copyright (C) 2005-2007  Knut Ahlers
+# Copyright (C) 2005-2009  Knut Ahlers
 #
 # This program is free software; you can redistribute it and/or modify it under the terms of the GNU General 
 # Public License as published by the Free Software Foundation; either version 2 of the License, or (at your 
@@ -50,6 +50,22 @@ class paste_database {
 		 * This function will get an timestamp in unix-format. All pastes older than the stamp should be deleted
 		 */
 		
+	}
+
+	public function can_create_pasteindex() {
+		/*
+		 * This engine reports whether the engine is able to create a paste index
+		 */
+		
+	}
+	
+	public function get_index() {
+		/*
+		 * Generates an two dimensional array of pastes.
+		 * Fields: pasteid, pastename, pastedescription
+		 * Minimum requirement: Return an empty array
+		 */ 
+		return array();
 	}
 
 	private function init_paste_environment() {

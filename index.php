@@ -2,7 +2,7 @@
 
 #
 # K-Nopaste - Free Nopaste-System
-# Copyright (C) 2005-2008  Knut Ahlers
+# Copyright (C) 2005-2009  Knut Ahlers
 #
 # This program is free software; you can redistribute it and/or modify it under the terms of the GNU General 
 # Public License as published by the Free Software Foundation; either version 2 of the License, or (at your 
@@ -52,15 +52,27 @@ if (is_file("classes/pastehandler.php") && is_readable("classes/pastehandler.php
 
 # Generate main menuentries
 $tl_links = "<span class=\"tl_links\"><a href=\"?\">Create new paste</a></span>";
+if($pengine->pasteindex_available())
+	$tl_links .= "<span class=\"tl_links\"><a href=\"?_showindex\">Show index of pastes</a></span>";
 
 # Try to get pastename and rise the action to generate the output
 if ($_SERVER['QUERY_STRING'] != "") {
 	$pasteid = urldecode($_SERVER['QUERY_STRING']);
-	if(strpos($pasteid, "?") != -1)
+	if(strpos($pasteid, "?") != -1) {
 		$pasteid = str_replace("?", "", $pasteid);
-	$content = $pengine->create_pasteview($pasteid);
-	if ($config->usetextfile)
-		$tl_links .= "<span class=\"tl_links\"><a href=\"?" . htmlentities(urldecode($_SERVER['QUERY_STRING'])) . ".txt\">Download as text</a></span>";
+	}
+	
+	if($pasteid == '_showindex') {
+		if(!$pengine->pasteindex_available()) {
+			header('Location: ?');
+		}
+		$content = $pengine->create_index();
+	} else {
+		$content = $pengine->create_pasteview($pasteid);
+		if ($config->usetextfile) {
+			$tl_links .= "<span class=\"tl_links\"><a href=\"?" . htmlentities(urldecode($_SERVER['QUERY_STRING'])) . ".txt\">Download as text</a></span>";
+		}
+	}
 } else {
 	if (isset ($_POST['paste']) && ($_POST['paste'] != "") || is_uploaded_file($_FILES['sourcefile']['tmp_name'])) {
 		# If wanted load geshi
@@ -75,12 +87,13 @@ if ($_SERVER['QUERY_STRING'] != "") {
 		}
 		
 		$pengine->create_paste($_POST['lang'], ltrim($paste));
-	} else
+	} else {
 		$content = $pengine->create_pasteform();
+	}
 }
 
 # Set version of the script and create the sitetitle
-$version = "K-Nopaste 3.4.2";
+$version = "K-Nopaste 3.5.0";
 $url = $_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
 $title = $config->sitetitle . " ($version)";
 $copy = "<a href=\"http://github.com/Luzifer/knopaste/\">$version</a> &copy; 2005 - 2009 by K. Ahlers - <a href=\"http://blog.knut.me\">Knuts Blog</a>";

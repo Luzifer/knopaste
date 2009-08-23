@@ -3,7 +3,7 @@
 
 #
 # K-Nopaste - Free Nopaste-System
-# Copyright (C) 2005-2007  Knut Ahlers
+# Copyright (C) 2005-2009  Knut Ahlers
 #
 # This program is free software; you can redistribute it and/or modify it under the terms of the GNU General 
 # Public License as published by the Free Software Foundation; either version 2 of the License, or (at your 
@@ -32,6 +32,10 @@ class pastehandler {
 		$this->config = $conf;
 		$this->dbhandler = new paste_database($this->config->database);
 	}
+	
+	public function pasteindex_available() {
+		return $this->config->pasteindex && $this->dbhandler->can_create_pasteindex();
+	}
 
 	public function create_pasteview($pastename) {
 		/*
@@ -52,6 +56,22 @@ class pastehandler {
 			# Put out the html-version of the paste
 			return $this->dbhandler->load_paste($pastename);
 		}
+	}
+	public function create_index() {
+		/*
+		 * Generates a html-output for an index of pastes
+		 */
+		$index = $this->dbhandler->get_index();
+		$html = "<ul>";
+		foreach($index as $entry) {
+			$html .= "<li><a href=\"?" . $entry['pasteid'] . "\">" . $entry['pastename'] . "</a>";
+			if(strlen($entry['pastedescription']) > 0) {
+				$html .= "<br />" . $entry['pastedescription'];
+			}
+			$html .= "</li>";
+		}
+		$html .= "</ul>";
+		return $html;
 	}
 	public function create_paste($language, $paste) {
 		/*
