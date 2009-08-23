@@ -38,7 +38,10 @@ class pastehandler {
 		 * Generates a html-output from the pastefiles
 		 */
 		
-		$this->dbhandler->delete_paste(time() - ($this->config->pastetime * 3600));
+		# If the pastetime is greater than 0 (infinite store time) delete old pastes.
+		if($this->config->pastetime > 0) {
+			$this->dbhandler->delete_paste(time() - ($this->config->pastetime * 3600));
+		}
 
 		if (preg_match("/^.*\.txt$/", $pastename)) {
 			# If the textversion of the paste is wanted show it!

@@ -24,7 +24,7 @@
 $config->database = "file|./pastebin/"; # The database-engine with their parameters (Examples see below)
 $config->template = "knopaste"; # Name of the template-file without .html-sufix
 $config->usetextfile = true; # Create downloadable textfiles? (true / false)
-$config->pastetime = 24; # How long should i keep pastes? (Default 24h)
+$config->pastetime = 24; # How long should i keep pastes? (Default 24h) / 0 for no deletion
 $config->sitetitle = "Knutshome nopaste"; # Title of your nopaste
 
 /*
