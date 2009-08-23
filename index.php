@@ -86,7 +86,7 @@ if ($_SERVER['QUERY_STRING'] != "") {
 			$paste .= "\n\n" . file_get_contents($_FILES['sourcefile']['tmp_name']);
 		}
 		
-		$pengine->create_paste($_POST['lang'], ltrim($paste));
+		$pengine->create_paste($_POST['lang'], ltrim($paste), $_POST['name'], $_POST['description']);
 	} else {
 		$content = $pengine->create_pasteform();
 	}

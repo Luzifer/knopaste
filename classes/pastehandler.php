@@ -64,7 +64,8 @@ class pastehandler {
 		$index = $this->dbhandler->get_index();
 		$html = "<ul>";
 		foreach($index as $entry) {
-			$html .= "<li><a href=\"?" . $entry['pasteid'] . "\">" . $entry['pastename'] . "</a>";
+			$name = strlen($entry['pastename']) > 0 && $entry['pastename'] !== null ? $entry['pastename'] : 'No name given';
+			$html .= "<li><a href=\"?" . $entry['pasteid'] . "\">" . $name . "</a>";
 			if(strlen($entry['pastedescription']) > 0) {
 				$html .= "<br />" . htmlentities($entry['pastedescription']);
 			}
@@ -73,7 +74,7 @@ class pastehandler {
 		$html .= "</ul>";
 		return $html;
 	}
-	public function create_paste($language, $paste) {
+	public function create_paste($language, $paste, $name, $description) {
 		/*
 		 * Generates the pastefile from input
 		 */
@@ -84,7 +85,7 @@ class pastehandler {
 		$geshi->enable_line_numbers(GESHI_NORMAL_LINE_NUMBERS);
 		$entry = $geshi->parse_code();
 		$entry = str_replace("</span></div>", "</span>&nbsp;</div>", $entry);
-		$pastename = $this->dbhandler->save_paste($this->config->usetextfile, $entry, $paste);
+		$pastename = $this->dbhandler->save_paste($this->config->usetextfile, $entry, $paste, $name, $description);
 		header("Location: ?$pastename");
 	}
 
@@ -94,6 +95,13 @@ class pastehandler {
 		 */
 		$form = "<form action=\"?\" method=\"post\" enctype=\"multipart/form-data\">" .
 		"<table style=\"width: 100%;\">";
+		
+		if($this->dbhandler->provide_meta()) {
+			$form .= "<tr><td style=\"width: 50px;\">Name:</td><td><input type=\"text\" name=\"name\" />";
+			$form .= "<tr><td>Description:</td><td>" .
+			"<textarea rows=\"5\" cols=\"10\" name=\"description\" style=\"width: 100%; height: 100%;\">" .
+			"</textarea></td></tr>";
+		}
 
 		$form .= "<tr><td style=\"width: 50px;\">Syntax:</td><td><select name=\"lang\" size=\"1\">";
 		$langdir = dir("./classes/geshi/");

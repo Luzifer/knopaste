@@ -24,7 +24,7 @@ class paste_database {
 	public $type = "mysql"; # Database-Type - The type "skeleton" will cause an error
 	private $connection = null;
 
-	public function save_paste($tp, $p_hl, $p_t) {
+	public function save_paste($tp, $p_hl, $p_t, $name, $description) {
 		/*
 		 * This function gets the paste-data and saves them to the database after assigning an idn
 		 * $tp = true / false (Generate a text-only-paste)
@@ -34,7 +34,8 @@ class paste_database {
 		$pastename = $this->generate_idn();
 
 		$now = time();
-		$sql = "INSERT INTO ".$this->table." (idn, timestamp, hlp, tp) VALUES ('$pastename', $now, '".addslashes($p_hl)."', '".addslashes($p_t)."');";
+		$sql = "INSERT INTO ".$this->table." (idn, timestamp, hlp, tp, name, description) ".
+			"VALUES ('$pastename', $now, '".addslashes($p_hl)."', '".addslashes($p_t)."', '".addslashes($name)."', '".addslashes($description)."');";
 		if(!mysql_query($sql))
 			die("Paste not successfull");
 
@@ -81,13 +82,20 @@ class paste_database {
 		 */ 
 		$result = array();
 		
-		$sql = "SELECT idn as pasteid, idn as pastename, SUBSTRING(tp,1,200) as pastedescription FROM " . $this->table . " ORDER BY timestamp DESC";
+		$sql = "SELECT idn as pasteid, name as pastename, description as pastedescription FROM " . $this->table . " ORDER BY timestamp DESC";
 		$res = mysql_query($sql);
 		while($paste = mysql_fetch_assoc($res)) {
 			$result[] = $paste;
 		}
 		
 		return $result;
+	}
+
+	public function provide_meta() {
+		/*
+		 * Returns true if the storage engine is capable to use name and description
+		 */
+		return true;
 	}
 
 	private function init_paste_environment() {

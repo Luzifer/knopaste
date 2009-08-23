@@ -23,7 +23,7 @@ class paste_database {
 	public $version = "1"; # Database-Version - You might work with this to check whether the format is deprecated
 	public $type = "skeleton"; # Database-Type - The type "skeleton" will cause an error
 
-	public function save_paste($tp, $p_hl, $p_t) {
+	public function save_paste($tp, $p_hl, $p_t, $name, $description) {
 		/*
 		 * This function gets the paste-data and saves them to the database after assigning an idn
 		 * $tp = true / false (Generate a text-only-paste)
@@ -66,6 +66,13 @@ class paste_database {
 		 * Minimum requirement: Return an empty array
 		 */ 
 		return array();
+	}
+	
+	public function provide_meta() {
+		/*
+		 * Returns true if the storage engine is capable to use name and description
+		 */
+		return false;
 	}
 
 	private function init_paste_environment() {
