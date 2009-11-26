@@ -41,6 +41,7 @@ $config->pasteindex = true; # Enable indexing of pastes? (true / false)
  *   host     = databasehost mostly localhost
  *   database = name of the database to use (must exist)
  *   table    = name of the table to use (will be created if not exist)
+ *   And: Please remove all < and > you see in the example. ;)
  */
 
 ?>
